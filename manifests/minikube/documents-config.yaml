@@ -7,9 +7,7 @@ data:
     englishStopwordsFile: "english_stopwords.json"
     output:
       type: 'database'
-      connection: >
-        host=postgres port=5432 user=pg dbname=search password=pg
-        sslmode=disable
+      connection: "host=postgres port=5432 user=pg dbname=search password=pg sslmode=disable"
     nats:
       url: "nats://127.0.0.1:4222"
       maxMsgs: 100
