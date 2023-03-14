@@ -5,7 +5,25 @@ metadata:
 data:
   upload-config.yaml: |
     serviceName: "upload"
+    dataFile: "yelp_short.json"
     output:
       type: database
       connection: "host=postgres port=5432 user=pg dbname=search password=pg sslmode=disable"
+    nats:
+      url: "nats"
+      maxMsgs: 100
+      jetstream:
+        goroutineChanSize: 32
+        thresholdOFF: 64
+        thresholdON: 32
+        consumer:
+          durableName: uploadDocsConsumer
+        name: uploadDocs
+        subject: search.v1.import.doc
+        recvChanSize: 1
+        msgChunkSize: 5
+        flowControlTimeoutInNs: "100000000ns"
+        fetch:
+          numMsgs: 2
+          timeoutInSecs: 3s
     sidecarServiceAddr: "127.0.0.1:5555"

@@ -1,0 +1,12 @@
+FROM nats:2.9.15-alpine3.17
+
+WORKDIR /app
+
+COPY manifests/minikube/nats.conf ./
+
+RUN apk update && \
+    apk add tree && \
+    apk add bash && \
+    apk add curl wget
+
+CMD ["nats-server", "-c", "/app/nats.conf"]

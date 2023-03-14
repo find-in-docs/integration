@@ -9,7 +9,7 @@ data:
       type: database
       connection: "host=postgres port=5432 user=pg dbname=search password=pg sslmode=disable"
     nats:
-      url: "nats://nats:4222"   # In the form of: nats://serverName:port
+      url: "nats"   # In the form of: nats://serverName:port
       maxMsgs: 100
       jetstream:
         goroutineChanSize: 32

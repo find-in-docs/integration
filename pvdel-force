@@ -1,0 +1,4 @@
+#!/bin/bash
+
+kubectl delete pv postgres-pv --grace-period=0 --force 
+kubectl patch pv postgres-pv -p '{"metadata": {"finalizers": null}}'

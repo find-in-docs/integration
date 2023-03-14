@@ -18,6 +18,14 @@ spec:
     spec:
       containers:             # Containers in this pod
         - name: nats
-          image: nats:latest
+          image: nats:my
           ports:
             - containerPort: 4222 # NATS will listen to this default port for clients.
+              name: nats-port
+          volumeMounts:
+          - name: nats-data
+            mountPath: /var/lib/nats/data
+      volumes:
+      - name: nats-data
+        persistentVolumeClaim:
+          claimName: nats-pvc
